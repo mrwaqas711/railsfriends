@@ -1,11 +1,12 @@
 <%= form_with(model: friend, local: true) do |form| %>
   <% if friend.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
+      <h2>
+        <% friend.errors.full_messages[0] %> </h2>
 
       <ul>
         <% friend.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li><%= message.inspect %></li>
         <% end %>
       </ul>
     </div>
@@ -33,7 +34,14 @@
   <div class="field form-group">
     <%= form.number_field :user_id, id: :friend_user_id, class: 'form-control', value: current_user.id, type: :hidden %>
   </div>
+  <div class="filed form-group">
+    <%= form.check_box :is_active %>
+    <%= form.label :is_active, 'Select' %>
+  </div>
   <div class="actions">
     <%= form.submit class: 'btn btn-secondary' %>
   </div>
 <% end %>
+
+
+

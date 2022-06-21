@@ -1,7 +1,18 @@
-<h1>About us page ........</h1>
+<div class="card mb-3" style="max-width: 900px; margin-bottom: 7rem !important;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <%= image_tag "mypic.jpg", height: 450, class: 'card-img' %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h1 class="card-title"><%= @intro_me %></h1>
+        <p class="card-text"><%= @about_me %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <%= @about_me %>
-  <br>
-  <%= @about_ibrahim %>
-</p>
+
+
+
+
