@@ -1,16 +1,21 @@
 class DummyWorkerJob
   include Sidekiq::Worker
+  # sidekiq_options retry: false
   # sidekiq_options queue: 'batches'
 
   def perform(dummy_id)
-    i = rand(1...7)
+    i = rand(1...8)
     sleep i
     puts "DONE FOR #{dummy_id}"
   end
 
+  def on_complete(status, options)
+    puts "Uh oh, batch has failures" if status.failures != 0
+  end
+
   def on_success(status, options)
     puts 'Batch processing ended'
-    Rails.cache.write(options['bid'], 'complete')
+    puts "#{options['bid']}'s batch succeeded."
   end
 
   def self.dummy_task
@@ -22,6 +27,5 @@ class DummyWorkerJob
         DummyWorkerJob.perform_async(dummy_id)
       end
     end
-    sleep 2 until Rails.cache.read(batch.bid) == 'complete'
   end
 end

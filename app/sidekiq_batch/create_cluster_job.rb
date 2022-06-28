@@ -2,7 +2,6 @@ class CreateClusterJob
   include Sidekiq::Worker
 
   def on_success(status, options)
-    puts "_commentssssssssssssssssssssssssss___"
     puts status, options
     puts "Created cluster done."
   end
