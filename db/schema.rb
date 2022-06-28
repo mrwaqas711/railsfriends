@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_141935) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.boolean "is_active", default: false
+    t.boolean "is_active"
     t.index ["user_id"], name: "index_friends_on_user_id"
   end
 
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_141935) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_active", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
